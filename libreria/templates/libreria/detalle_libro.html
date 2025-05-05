@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4">{{ libro.titulo }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Autor:</strong> {{ libro.autor }}</li>
+        <li class="list-group-item"><strong>Fecha de publicación:</strong> {{ libro.fecha_publicacion|date:"d/m/Y" }}</li>
+        <li class="list-group-item"><strong>Estado:</strong> {{ libro.get_estado_display }}</li>
+        <li class="list-group-item"><strong>Reseña personal:</strong><br>{{ libro.resena_personal|linebreaks }}</li>
+    </ul>
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'editar-libro' libro.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'eliminar-libro' libro.pk %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'lista-libros' %}" class="btn btn-secondary">Volver</a>
+    </div>
+</div>
+{% endblock %}
